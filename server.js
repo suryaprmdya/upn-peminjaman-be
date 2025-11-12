@@ -1,5 +1,6 @@
 import express from "express";
 import db from "./config/db.js";
+import allRoute from "./routes/index.js";
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.get("/", (req, res) => {
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 // app.use(cookieParser());
-// app.use(allRoute);
+app.use(allRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
