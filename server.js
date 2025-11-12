@@ -12,13 +12,14 @@ db.then(() => {
   console.log("failed connect to mongoDB");
 });
 
+app.use(cors())
 // Middleware CORS dengan konfigurasi cookie-friendly
-app.use(cors({
-  origin: "http://localhost:5173", // alamat frontend
-  credentials: true, // wajib agar cookies dikirim
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
+// app.use(cors({
+//   origin: "http://localhost:5173", // alamat frontend
+//   credentials: true, // wajib agar cookies dikirim
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// }));
 
 app.get("/", (req, res) => {
   res.send("Hello this is from Web Service Express");
