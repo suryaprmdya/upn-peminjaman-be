@@ -14,6 +14,10 @@ db.then(() => {
   console.log("failed connect to mongoDB");
 });
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
+
 // app.use(cors())
 // Middleware CORS dengan konfigurasi cookie-friendly
 app.use(cors({
@@ -27,9 +31,6 @@ app.get("/", (req, res) => {
   res.send("Hello this is from Web Service Express");
 });
 
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
-app.use(cookieParser());
 app.use(allRoute);
 
 app.listen(port, () => {

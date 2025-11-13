@@ -42,7 +42,8 @@ export const login = async (req, res) => {
     res.cookie("accessToken", token, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000, // Durasi cookie 1 hari (dalam milidetik)
-      secure: process.env.NODE_ENV === "production", // Hanya aktifkan di HTTPS
+      secure: process.env.NODE_ENV === "production" ? true : false,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
 
     const {password, ...otherDetails} = user._doc;
