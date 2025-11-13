@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import db from "./config/db.js";
 import allRoute from "./routes/index.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.get("/", (req, res) => {
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-// app.use(cookieParser());
+app.use(cookieParser());
 app.use(allRoute);
 
 app.listen(port, () => {
