@@ -23,12 +23,21 @@ const facilitySchema = new Schema(
       required: false, // Opsional, bisa juga diubah menjadi true jika wajib
       min: [0, "Kapasitas tidak boleh negatif"], // Validasi nilai minimum
     },
+
+    category: {
+      type: String,
+      enum: ["Ruangan", "Peralatan", "Lainnya"], // Define allowed roles
+      default: "Ruangan", // Set a default role
+      required: true, // Opsional, bisa juga diubah menjadi true jika wajib
+    },
+
     status: {
       type: String,
       enum: ["Tersedia", "Dipinjam"], // Define allowed roles
       default: "Tersedia", // Set a default role
       // required: true, // Opsional, bisa juga diubah menjadi true jika wajib
     },
+    
     imageURL: {
       type: String,
       required: false, // Opsional
