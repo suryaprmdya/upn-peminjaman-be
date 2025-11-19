@@ -69,6 +69,7 @@ export const createFacility = async (req, res) => {
       status,
       description,
       capacity,
+      category,
       imageURL,
     });
 
@@ -106,7 +107,7 @@ export const createFacility = async (req, res) => {
 export const updateFacility = async (req, res) => {
   try {
     const {id} = req.params;
-    const {name, description, capacity, imageURL, status} = req.body;
+    const {name, description, capacity, imageURL, status, category} = req.body;
 
     // Cek format ID
     if (!isValidObjectId(id)) {
@@ -117,7 +118,7 @@ export const updateFacility = async (req, res) => {
     // Opsi { runValidators: true } untuk menjalankan validasi schema (misal: 'required')
     const updatedFacility = await Facility.findByIdAndUpdate(
       id,
-      {name, description, capacity, imageURL, status}, // Data baru
+      {name, description, capacity, imageURL, status, category}, // Data baru
       {new: true, runValidators: true}
     );
 
