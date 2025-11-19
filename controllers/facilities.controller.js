@@ -61,7 +61,7 @@ export const getFacilityById = async (req, res) => {
  */
 export const createFacility = async (req, res) => {
   try {
-    const {name, description, capacity, imageURL, status} = req.body;
+    const {name, description, capacity, imageURL, status, category} = req.body;
 
     // Buat instans baru berdasarkan model
     const newFacility = new Facility({
