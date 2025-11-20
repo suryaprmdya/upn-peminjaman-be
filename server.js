@@ -21,7 +21,7 @@ app.use(cookieParser());
 // app.use(cors())
 // Middleware CORS dengan konfigurasi cookie-friendly
 app.use(cors({
-  origin: "http://localhost:5173", // alamat frontend
+  origin: "https://upn-peminjaman-fe.vercel.app", // alamat frontend
   credentials: true, // wajib agar cookies dikirim
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
