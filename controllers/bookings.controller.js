@@ -18,6 +18,7 @@ export const createBooking = async (req, res) => {
       user,
       startTime,
       endTime,
+      date
     //   topsisEvaluation,
     } = req.body;
 
@@ -61,6 +62,7 @@ export const createBooking = async (req, res) => {
       user,
       startTime, // Pastikan field ini ada di schema Booking (lihat catatan di bawah)
       endTime,
+      date,
       requirements: requirementsData,
     //   topsisEvaluation: JSON.parse(topsisEvaluation || "[]"), // Parsing data kriteria SPK
       status: "pending",
