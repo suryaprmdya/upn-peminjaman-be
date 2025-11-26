@@ -14,8 +14,8 @@ export const createBooking = async (req, res) => {
   try {
     const {
       eventName,
-      facilityId,
-      userId,
+      facility,
+      user,
       startTime,
       endTime,
     //   topsisEvaluation,
@@ -30,7 +30,7 @@ export const createBooking = async (req, res) => {
     // Mencari booking lain di facilityId yang sama, statusnya BUKAN cancelled/rejected,
     // dan waktunya beririsan.
     const conflictBooking = await Booking.findOne({
-      facilityId,
+      facility,
       status: {$nin: ["cancelled", "rejected"]}, // Abaikan yang batal/tolak
       $or: [
         {
@@ -57,8 +57,8 @@ export const createBooking = async (req, res) => {
     // D. Buat Booking Baru
     const newBooking = new Booking({
       eventName,
-      facilityId,
-      userId,
+      facility,
+      user,
       startTime, // Pastikan field ini ada di schema Booking (lihat catatan di bawah)
       endTime,
       requirements: requirementsData,
@@ -97,8 +97,8 @@ export const getAllBookings = async (req, res) => {
     if (facilityId) query.facilityId = facilityId;
 
     const bookings = await Booking.find(query)
-      .populate("userId", "fullName npm email") // Ambil info user
-      .populate("facilityId", "name category") // Ambil info fasilitas
+      .populate("user", "username npm email") // Ambil info user
+      .populate("facility", "name category") // Ambil info fasilitas
       .sort({createdAt: -1});
 
     res.status(200).json(bookings);
