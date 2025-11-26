@@ -69,6 +69,8 @@ const bookingSchema = new Schema(
     date: {type: Date, required: true},
     startTime: {type: String, required: true},
     endTime: {type: String, required: true},
+    organization: {type: String},
+    participant: {type: Number},
 
     // Embedded Documents (Composition sesuai diagram)
     requirements: [requirementSchema], // Array of Requirements
