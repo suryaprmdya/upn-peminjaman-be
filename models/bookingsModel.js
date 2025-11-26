@@ -47,14 +47,6 @@ const approvalSchema = new Schema(
 
 const bookingSchema = new Schema(
   {
-    // Info Dasar
-    eventName: {type: String, required: true},
-    status: {
-      type: String,
-      enum: ["pending", "process", "approved", "rejected"],
-      default: "pending",
-    },
-
     // References (Foreign Keys)
     user: {
       type: Schema.Types.ObjectId,
@@ -66,7 +58,15 @@ const bookingSchema = new Schema(
       ref: "Facility",
       required: true,
     },
-    Date: {type: Date, required: true},
+
+    // Info Dasar
+    eventName: {type: String, required: true},
+    status: {
+      type: String,
+      enum: ["pending", "process", "approved", "rejected"],
+      default: "pending",
+    },
+    date: {type: Date, required: true},
     startTime: {type: String, required: true},
     endTime: {type: String, required: true},
 
