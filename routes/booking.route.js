@@ -17,7 +17,7 @@ const route = express.Router();
 // route.get("/", testController); // Testing Route /pengajuan
 // route.post("/", uploadMiddleware.array("files"), createBooking); // Upload file saat create
 route.post("/", verifyToken, createBooking); // Upload file saat create
-route.get("/user/:userId", getUserBookings);
+route.get("/saya",verifyToken, getUserBookings);
 
 // Adin / Approver Routes
 route.get("/", getAllBookings);

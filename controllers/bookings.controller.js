@@ -169,9 +169,11 @@ export const processApproval = async (req, res) => {
 // --- 5. GET USER HISTORY (History Saya) ---
 export const getUserBookings = async (req, res) => {
   try {
-    const {userId} = req.params; // Atau ambil dari req.user.id jika pakai JWT
-    const bookings = await Booking.find({userId})
-      .populate("facilityId", "facilityName")
+    const user = req.user.id; // Atau ambil dari req.user.id jika pakai JWT
+    // res.status(200).json({message: `Get bookings for user ${user} - to be implemented`});
+
+    const bookings = await Booking.find({user})
+      .populate("facility", "name")
       .sort({createdAt: -1});
 
     res.status(200).json(bookings);
