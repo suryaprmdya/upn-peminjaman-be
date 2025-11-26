@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 export const testController = (req, res) => {
   res.json("Booking Controller is working");
-}
+};
 
 // --- 1. CREATE BOOKING (Mengajukan Peminjaman) ---
 export const createBooking = async (req, res) => {
@@ -18,8 +18,10 @@ export const createBooking = async (req, res) => {
       user,
       startTime,
       endTime,
-      date
-    //   topsisEvaluation,
+      date,
+      organization,
+      participant,
+      //   topsisEvaluation,
     } = req.body;
 
     // A. Validasi Dasar
@@ -63,8 +65,10 @@ export const createBooking = async (req, res) => {
       startTime, // Pastikan field ini ada di schema Booking (lihat catatan di bawah)
       endTime,
       date,
+      organization,
+      participant,
       requirements: requirementsData,
-    //   topsisEvaluation: JSON.parse(topsisEvaluation || "[]"), // Parsing data kriteria SPK
+      //   topsisEvaluation: JSON.parse(topsisEvaluation || "[]"), // Parsing data kriteria SPK
       status: "pending",
       activityLogs: [
         {
