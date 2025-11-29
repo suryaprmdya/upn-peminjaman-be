@@ -5,7 +5,8 @@ import {
   getBookingById, 
   processApproval,
   getUserBookings, 
-  testController
+  testController,
+  deleteBooking
 } from "../controllers/bookings.controller.js";
 import { verifyToken } from "../middlewares/verifyToken.js";
 
@@ -21,6 +22,7 @@ route.get("/saya",verifyToken, getUserBookings);
 
 // Adin / Approver Routes
 route.get("/", getAllBookings);
+route.delete("/:id", deleteBooking);
 // route.get("/:id", getBookingById);
 // route.put("/:id/approval", processApproval); // Endpoint untuk ACC/Tolak
 

@@ -2,6 +2,15 @@ import Booking from "../models/bookingsModel.js";
 import Facility from "../models/facilityModel.js";
 import mongoose from "mongoose";
 
+/**
+ * Helper function untuk mengecek apakah ID valid
+ * @param {string} id - ID yang akan dicek
+ * @returns {boolean} - True jika valid, false jika tidak
+ */
+export const isValidObjectId = (id) => {
+  return mongoose.Types.ObjectId.isValid(id);
+};
+
 export const testController = (req, res) => {
   res.json("Booking Controller is working");
 };
@@ -183,5 +192,31 @@ export const getUserBookings = async (req, res) => {
     res.status(200).json(bookings);
   } catch (error) {
     res.status(500).json({message: error.message});
+  }
+};
+
+// --- 5. DELETE BOOKING BY ID ---
+export const deleteBooking = async (req, res) => {
+  try {
+    const {id} = req.params;
+
+    // Cek format ID
+    if (!isValidObjectId(id)) {
+      return res.status(400).json({message: "ID Pengajuan tidak valid"});
+    }
+
+    const deletedBooking = await Booking.findByIdAndDelete(id);
+
+    if (!deletedBooking) {
+      return res.status(404).json({message: "Fasilitas tidak ditemukan"});
+    }
+
+    res
+      .status(200)
+      .json({message: "Pengajuan berhasil dihapus", booking: deletedBooking});
+  } catch (error) {
+    res
+      .status(500)
+      .json({message: "Terjadi kesalahan pada server", error: error.message});
   }
 };
