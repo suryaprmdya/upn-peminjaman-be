@@ -31,3 +31,15 @@ export const getUserLogin = async (req, res) => {
     res.status(500).json({ message: "Kesalahan server internal." });
   }
 };
+
+export const getAllUser = async (req, res) => {
+  try {
+    // Cari semua dokumen di koleksi Facility
+    const users= await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    res
+      .status(500)
+      .json({message: "Terjadi kesalahan pada server", error: error.message});
+  }
+}
